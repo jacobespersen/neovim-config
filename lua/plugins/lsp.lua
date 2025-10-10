@@ -28,6 +28,7 @@ return {
           "lua_ls",        -- Lua
           "pyright",       -- Python (replaces python-mode)
           "ts_ls",         -- JavaScript/TypeScript
+          "solargraph",    -- Ruby
           "html",          -- HTML
           "cssls",         -- CSS
           "jsonls",        -- JSON
@@ -42,26 +43,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
+      "williamboman/mason-lspconfig.nvim"
     },
     config = function()
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      -- LSP keymaps (when LSP attaches)
-      local on_attach = function(client, bufnr)
-        local bufopts = { noremap=true, silent=true, buffer=bufnr }
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, bufopts)
-        vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
-        vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
-      end
-
       -- Configure diagnostics display
       vim.diagnostic.config({
         virtual_text = true,
@@ -78,39 +62,60 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
 
-      -- Use mason-lspconfig to automatically setup servers
-      -- This integrates with Mason and uses the new vim.lsp.config API
-      require("mason-lspconfig").setup_handlers({
-        -- Default handler for all servers
-        function(server_name)
-          require("lspconfig")[server_name].setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-          })
-        end,
-
-        -- Custom handler for lua_ls
-        ["lua_ls"] = function()
-          require("lspconfig").lua_ls.setup({
-            on_attach = on_attach,
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                diagnostics = {
-                  globals = { "vim" },
-                },
-                workspace = {
-                  library = vim.api.nvim_get_runtime_file("", true),
-                  checkThirdParty = false,
-                },
-                telemetry = {
-                  enable = false,
-                },
-              },
-            },
-          })
+      -- LSP keymaps (set up when any LSP attaches)
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(args)
+          local bufnr = args.buf
+          local bufopts = { noremap=true, silent=true, buffer=bufnr }
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+          vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+          vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
+          vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
+          vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, bufopts)
+          vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, bufopts)
+          vim.keymap.set("n", "]d", vim.diagnostic.goto_next, bufopts)
         end,
       })
+
+      -- Modern Neovim 0.11+ LSP config using vim.lsp.config
+      local servers = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" },
+              },
+              workspace = {
+                library = vim.api.nvim_get_runtime_file("", true),
+                checkThirdParty = false,
+              },
+              telemetry = {
+                enable = false,
+              },
+            },
+          },
+        },
+        solargraph = {
+          settings = {
+            solargraph = {
+              diagnostics = true,
+              formatting = true,
+            },
+          },
+        },
+        pyright = {},
+        ts_ls = {},
+        html = {},
+        cssls = {},
+        jsonls = {},
+      }
+
+      -- Setup each server using the modern API
+      for server_name, config in pairs(servers) do
+        vim.lsp.config(server_name, config)
+        vim.lsp.enable(server_name)
+      end
     end,
   },
 }

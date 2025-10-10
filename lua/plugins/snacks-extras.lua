@@ -155,8 +155,8 @@ return {
     { "<leader>nh", function() Snacks.notifier.show_history() end, desc = "Notification History" },
     { "<leader>nd", function() Snacks.notifier.hide() end, desc = "Dismiss Notifications" },
 
-    -- LSP rename with file operations
-    { "<leader>rn", function() Snacks.rename.rename_file() end, desc = "Rename File" },
+    -- File rename
+    { "<leader>rf", function() Snacks.rename.rename_file() end, desc = "Rename File" },
 
     -- Debug/profiler
     { "<leader>ps", function() Snacks.profiler.scratch() end, desc = "Profiler Scratch" },

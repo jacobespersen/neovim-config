@@ -39,10 +39,6 @@ opt.timeoutlen = 300
 -- Completion
 opt.completeopt = "menu,menuone,noselect"
 
--- Enable syntax highlighting
-vim.cmd("syntax enable")
-vim.cmd("filetype plugin indent on")
-
 -- File type specific
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "*.ejs",

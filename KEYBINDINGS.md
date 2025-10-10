@@ -1,127 +1,191 @@
 # Neovim Keybindings Reference
 
-## Leader Key
-`<Space>` is your leader key
+**Leader Key:** `<Space>`
 
-## Navigation (Custom Layout)
-- `j` = Move left (h)
-- `k` = Move down (j)
-- `l` = Move up (k)
-- `;` = Move right (l)
+---
 
-## Window Management
-- `<C-j>` = Move to left window
-- `<C-k>` = Move to bottom window
-- `<C-l>` = Move to top window
-- `<C-\>` = Move to right window
+## 🔥 Most Essential (Daily Use)
 
-## Tab Navigation
-- `<C-h>` = Previous tab
-- `<C-;>` = Next tab
+### File Operations
+- `<C-s>` - Save file (insert and normal mode)
+- `<C-q>` - Quit window/buffer
+- `<C-n>` - Toggle file explorer (nvim-tree)
+- `kl` - Escape to normal mode (from insert mode)
 
-## File Operations
-- `<C-s>` = Save (works in insert and normal mode)
-- `<C-q>` = Quit
-- `kl` (in insert mode) = Escape to normal mode
+### Navigation (Custom Layout)
+- `j` - Move left (replaces h)
+- `k` - Move down (replaces j)
+- `l` - Move up (replaces k)
+- `;` - Move right (replaces l)
 
-## File Explorer (nvim-tree)
-- `<C-n>` = Toggle file explorer
-- In nvim-tree:
-  - `a` = Create new file
-  - `d` = Delete file
-  - `r` = Rename file
-  - `x` = Cut file
-  - `c` = Copy file
-  - `p` = Paste file
+### File Finding (Snacks Picker)
+- `<leader>o` - Find files
+- `<leader>O` - Find files (including hidden/ignored)
+- `<leader>m` - Find open buffers
+- `<leader>fg` - Live grep (search in all files)
+- `<leader>fw` - Grep word under cursor
+- `<leader>fh` - Search help tags
 
-## Fuzzy Finding (Telescope)
-- `<leader>o` = Find files
-- `<leader>O` = Find files (including ignored)
-- `<leader>m` = Find buffers
-- `<leader>fg` = Live grep
-- `<leader>fh` = Help tags
+### Copilot (AI Suggestions)
+- `<Tab>` - Accept AI suggestion (when visible)
+- `<M-]>` - Next suggestion (Alt/Option + ])
+- `<M-[>` - Previous suggestion (Alt/Option + [)
+- `<C-]>` - Dismiss suggestion
 
-## Claude Code
-- `<leader>ac` = Toggle Claude Code terminal (right split)
-- `<leader>as` = Send visual selection to Claude Code
-- In Claude terminal: `<Esc>` to exit terminal mode
+---
 
-## LSP (Code Intelligence)
-- `gd` = Go to definition
-- `K` = Hover documentation
-- `gi` = Go to implementation
-- `gr` = Show references
-- `<leader>rn` = Rename symbol
-- `<leader>ca` = Code actions
-- `<leader>e` = Show diagnostic in float
-- `[d` = Previous diagnostic
-- `]d` = Next diagnostic
+## 💻 Code Intelligence (LSP)
 
-## Completion (nvim-cmp)
-- `<Tab>` = Next completion item
-- `<S-Tab>` = Previous completion item
-- `<CR>` = Confirm selection
-- `<C-Space>` = Trigger completion
-- `<C-e>` = Close completion menu
+### Navigation
+- `gd` - Go to definition
+- `gr` - Show all references
+- `gi` - Go to implementation
+- `K` - Show hover documentation
 
-## Copilot
-- `<Tab>` = Accept suggestion (if visible)
-- `<M-]>` = Next suggestion
-- `<M-[>` = Previous suggestion
-- `<C-]>` = Dismiss suggestion
+### Actions
+- `<leader>ca` - Code actions (fixes/refactors)
+- `<leader>e` - Show diagnostic details (errors/warnings)
+- `[d` - Previous diagnostic
+- `]d` - Next diagnostic
 
-## Clipboard Operations
-- `<leader>y` = Copy to system clipboard (visual mode)
-- `<leader>d` = Cut to system clipboard (visual mode)
-- `<leader>p` = Paste from system clipboard (normal mode)
-- `<leader>P` = Paste before cursor (normal mode)
+---
 
-## Commenting (Comment.nvim)
-- `gcc` = Toggle line comment
-- `gbc` = Toggle block comment
-- In visual mode:
-  - `gc` = Toggle line comment
-  - `gb` = Toggle block comment
+## 🤖 AI Assistant (Claude Code)
+- `<leader>ac` - Toggle Claude Code terminal
+- `<leader>as` - Send selection to Claude (visual mode)
+- `<leader>ax` - Close Claude Code
+- `<Esc>` - Exit terminal insert mode (in terminal)
+- `<C-h>` - Jump from terminal back to code (in terminal)
 
-## Surround (nvim-surround)
-- `ys{motion}{char}` = Add surround
-- `ds{char}` = Delete surround
-- `cs{old}{new}` = Change surround
-- Visual mode: `S{char}` = Surround selection
+---
 
-## Spell Check
-- `<leader>f` = Fix spelling (first suggestion)
+## 🪟 Window & Tab Management
 
-## Terminal Mode
-- `<Esc>` = Exit terminal mode to normal mode
-- `<C-/>` = Toggle floating terminal (snacks)
+### Window Navigation
+- `<C-j>` - Move to left window
+- `<C-k>` - Move to bottom window
+- `<C-l>` - Move to top window
+- `<C-\>` - Move to right window
 
-## Snacks.nvim Features
+### Tab Navigation
+- `<C-h>` - Previous tab
+- `<C-;>` - Next tab
 
 ### Buffer Management
-- `<leader>bd` = Delete buffer (preserves layout)
-- `<leader>bo` = Delete other buffers
+- `<leader>bd` - Delete buffer (preserves window layout)
+- `<leader>bo` - Delete all other buffers
 
-### Git Integration
-- `<leader>gb` = Open file/line in browser (GitHub/GitLab)
-- `<leader>gg` = Open LazyGit
-- `<leader>gl` = LazyGit log
-- `<leader>gf` = LazyGit current file history
+---
 
-### Focus & Productivity
-- `<leader>z` = Toggle Zen Mode (distraction-free)
-- `<leader>Z` = Toggle Zoom (focus on current window)
-- `<leader>.` = Toggle scratch buffer (quick notes)
-- `<leader>S` = Select scratch buffer
+## ✂️ Text Editing
+
+### Clipboard Operations
+- `<leader>y` - Copy to system clipboard (visual mode)
+- `<leader>d` - Cut to system clipboard (visual mode)
+- `<leader>p` - Paste from system clipboard
+- `<leader>P` - Paste before cursor
+
+### Commenting (Comment.nvim)
+- `gcc` - Toggle line comment
+- `gbc` - Toggle block comment
+- `gc` - Toggle comment on selection (visual mode)
+- `gb` - Toggle block comment on selection (visual mode)
+
+### Surround Text (nvim-surround)
+- `ys{motion}{char}` - Add surround (e.g., `ysiw"` surrounds word with quotes)
+- `ds{char}` - Delete surround (e.g., `ds"` removes quotes)
+- `cs{old}{new}` - Change surround (e.g., `cs"'` changes " to ')
+- `S{char}` - Surround selection (visual mode)
+
+### Spell Check
+- `<leader>f` - Fix spelling with first suggestion
+
+---
+
+## 🎨 Focus & Productivity (Snacks)
+
+### Focus Modes
+- `<leader>z` - Toggle Zen Mode (distraction-free coding)
+- `<leader>Z` - Toggle Zoom (maximize current window)
+- `<leader>.` - Toggle scratch buffer (quick notes)
+- `<leader>S` - Select scratch buffer
 
 ### Notifications
-- `<leader>nh` = Show notification history
-- `<leader>nd` = Dismiss all notifications
+- `<leader>nh` - Show notification history
+- `<leader>nd` - Dismiss all notifications
 
-### Other Snacks Features (Auto-enabled)
-- **Smooth scrolling** - Enabled automatically
+---
+
+## 🔧 Git Integration (Snacks + LazyGit)
+- `<leader>gb` - Open file/line in browser (GitHub/GitLab)
+- `<leader>gg` - Open LazyGit
+- `<leader>gl` - LazyGit log
+- `<leader>gf` - LazyGit current file history
+
+---
+
+## 🛠️ File Explorer (nvim-tree)
+
+When in nvim-tree:
+- `<CR>` or `o` - Open file/folder
+- `a` - Create new file/folder
+- `d` - Delete file/folder
+- `r` - Rename file/folder
+- `x` - Cut file
+- `c` - Copy file
+- `p` - Paste file
+- `R` - Refresh tree
+- `H` - Toggle hidden files
+- `q` - Close tree
+
+---
+
+## 🖥️ Terminal
+- `<C-/>` - Toggle floating terminal
+- `<Esc>` - Exit terminal insert mode
+- `<C-q>` - Close terminal window
+
+---
+
+## 🔍 Advanced Features
+
+### File Operations
+- `<leader>rf` - Rename file (with file system operations)
+
+### Debug/Profiling
+- `<leader>ps` - Open profiler scratch buffer
+
+---
+
+## ✨ Auto-Enabled Features (No Keybinds)
+
+These Snacks features work automatically:
+- **Smooth scrolling** - Nicer visual scrolling experience
 - **Indent guides** - Animated scope highlighting
 - **Word highlighting** - Auto-highlight word under cursor
-- **Dim** - Dims inactive code for focus
+- **Dim inactive code** - Helps focus on active code
 - **Dashboard** - Beautiful startup screen
-- **Big file handling** - Auto-optimizes large files
+- **Big file handling** - Auto-optimizes files >1MB
+- **LSP notifications** - Notifies when language servers attach
+
+---
+
+## 📝 Tips
+
+1. **Auto-paste positioning**: After paste/yank, cursor jumps to end automatically
+2. **Ruby formatting**: Files auto-format with Rubocop on save
+3. **LSP diagnostics**: Errors/warnings show as virtual text in your code
+4. **Custom navigation**: Remember j/k/l/; instead of h/j/k/l!
+5. **Multiple modes**: Many `<leader>` commands work in both normal and visual mode
+
+---
+
+## 🚀 Quick Reference by Category
+
+**Files:** `<leader>o` `<leader>m` `<C-n>` `<C-s>`  
+**Code:** `gd` `gr` `K` `<leader>ca`  
+**AI:** `<Tab>` (Copilot) `<leader>ac` (Claude)  
+**Edit:** `gcc` `ys` `<leader>y` `<leader>p`  
+**Focus:** `<leader>z` `<leader>.`  
+**Git:** `<leader>gg` `<leader>gb`  
+**Windows:** `<C-j/k/l/\>` `<C-h/;>` (tabs)

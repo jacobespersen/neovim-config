@@ -73,6 +73,3 @@ keymap("t", "<C-q>", "<C-\\><C-n>:quit<cr>", opts)
 
 -- Easy way to jump from Claude terminal back to code
 keymap("t", "<C-h>", "<C-\\><C-n><C-w>h", opts)  -- Jump left from terminal
-
--- Tab completion in insert mode (for nvim-cmp)
--- These will be configured in the cmp plugin file
