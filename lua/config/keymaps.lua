@@ -48,6 +48,17 @@ keymap("n", "<Leader>p", '"+p', opts)
 keymap("n", "<Leader>P", '"+P', opts)
 keymap("v", "<Leader>p", '"+p', opts)
 keymap("v", "<Leader>P", '"+P', opts)
+-- File path copying
+keymap("n", "<leader>cp", function()
+  local path = vim.fn.expand("%:.")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied relative path: ' .. path)
+end, { desc = "Copy relative file path" })
+keymap("n", "<leader>cf", function()
+  local path = vim.fn.expand("%:t")
+  vim.fn.setreg("+", path)
+  vim.notify('Copied filename: ' .. path)
+end, { desc = "Copy filename" })
 
 -- Automatically jump to end of pasted text
 keymap("v", "y", "y`]", opts)
@@ -56,6 +67,7 @@ keymap("n", "p", "p`]", opts)
 
 -- File explorer (will use nvim-tree)
 keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
+-- Note: <C-f> keybinding is defined in nvim-tree.lua plugin config
 
 -- Fuzzy finder (now using Snacks picker instead of Telescope)
 -- These are now defined in snacks-extras.lua but keeping comments here for reference

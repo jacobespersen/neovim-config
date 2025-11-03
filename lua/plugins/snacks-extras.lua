@@ -106,6 +106,21 @@ return {
           hidden = true,
         },
       },
+      -- Custom keybindings for the picker
+      win = {
+        input = {
+          keys = {
+            ["<Tab>"] = { "list_down", mode = { "i", "n" } },
+            ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
+          },
+        },
+        list = {
+          keys = {
+            ["<Tab>"] = "list_down",
+            ["<S-Tab>"] = "list_up",
+          },
+        },
+      },
     },
 
     -- Better vim.ui.input
@@ -187,6 +202,13 @@ return {
             if client then
               Snacks.notify("LSP attached: " .. client.name, { title = "LSP", level = "info" })
             end
+          end,
+        })
+
+        -- Single Esc to exit terminal insert mode in Snacks terminals
+        vim.api.nvim_create_autocmd("TermOpen", {
+          callback = function()
+            vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { buffer = true, noremap = true, silent = true })
           end,
         })
       end,

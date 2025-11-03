@@ -9,8 +9,13 @@ return {
     null_ls.setup({
       sources = {
         -- Rubocop (installed via Mason)
-        null_ls.builtins.diagnostics.rubocop,  -- Shows errors/warnings
-        null_ls.builtins.formatting.rubocop,   -- Formats code
+        -- Disable server mode to avoid connection issues
+        null_ls.builtins.diagnostics.rubocop.with({
+          extra_args = { "--no-server" }
+        }),
+        null_ls.builtins.formatting.rubocop.with({
+          extra_args = { "--no-server" }
+        }),
       },
     })
     
