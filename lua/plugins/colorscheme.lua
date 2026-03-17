@@ -1,19 +1,13 @@
--- Colorscheme: Modern Solarized with Treesitter support
+-- Colorscheme: Catppuccin
 return {
-  "maxmx03/solarized.nvim",
+  "catppuccin/nvim",
+  name = "catppuccin",
   lazy = false,
   priority = 1000,
   config = function()
-    require("solarized").setup({
-      transparent = {
-        enabled = false,
-      },
-      styles = {
-        comments = { italic = true },
-        functions = { italic = false },
-        variables = { italic = false },
-      },
+    require("catppuccin").setup({
+      flavour = "macchiato",
     })
-    vim.cmd.colorscheme("solarized")
+    vim.cmd.colorscheme("catppuccin")
   end,
 }

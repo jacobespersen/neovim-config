@@ -6,7 +6,7 @@ local opt = vim.opt
 -- Basic Settings
 opt.number = true
 opt.relativenumber = true
-opt.mouse = ""  -- Disable mouse (as in your original config)
+opt.mouse = "a"  -- Enable mouse in all modes
 opt.spell = true
 opt.spelllang = "en_us"
 opt.modifiable = true
@@ -38,6 +38,17 @@ opt.timeoutlen = 300
 
 -- Completion
 opt.completeopt = "menu,menuone,noselect"
+
+-- Auto-reload files changed on disk (e.g. by Claude Code)
+opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold" }, {
+  command = "checktime",
+})
+
+-- Start a named RPC socket so external tools (Claude Code hooks) can trigger reloads.
+-- Socket name is derived from cwd so multiple Neovim instances get unique sockets.
+local sock_name = "/tmp/nvim-" .. vim.fn.getcwd():gsub("/", "-"):sub(2) .. ".sock"
+pcall(vim.fn.serverstart, sock_name)
 
 -- File type specific
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {

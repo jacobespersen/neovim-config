@@ -69,7 +69,7 @@
 
 ### Tab Navigation
 - `<C-h>` - Previous tab
-- `<C-;>` - Next tab
+- `<C-;>` - Move to pane on the right
 
 ### Buffer Management
 - `<leader>bd` - Delete buffer (preserves window layout)

@@ -27,10 +27,10 @@ keymap("n", "<C-j>", "<C-W><C-H>", opts)
 keymap("n", "<C-k>", "<C-W><C-J>", opts)
 keymap("n", "<C-l>", "<C-W><C-K>", opts)
 keymap("n", "<C-\\>", "<C-W><C-L>", opts)
+keymap("n", "<C-;>", "<C-W><C-L>", opts)
 
 -- Tab navigation
 keymap("n", "<C-h>", "gT", opts)
-keymap("n", "<C-;>", "gt", opts)
 
 -- Save and quit
 keymap("i", "<C-s>", "<esc>:w<cr>", opts)
@@ -65,9 +65,8 @@ keymap("v", "y", "y`]", opts)
 keymap("v", "p", "p`]", opts)
 keymap("n", "p", "p`]", opts)
 
--- File explorer (will use nvim-tree)
-keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
--- Note: <C-f> keybinding is defined in nvim-tree.lua plugin config
+-- File explorer keybindings defined in neo-tree.lua plugin config
+-- <C-n> = toggle, <C-f> = reveal current file, <leader>gc = git-changed files
 
 -- Fuzzy finder (now using Snacks picker instead of Telescope)
 -- These are now defined in snacks-extras.lua but keeping comments here for reference
@@ -79,9 +78,14 @@ keymap("n", "<C-n>", ":NvimTreeToggle<CR>", opts)
 
 -- Terminal mode escape and navigation
 keymap("t", "<Esc>", "<C-\\><C-n>", opts)  -- Exit terminal insert mode
+keymap("t", "<C-v>", "<C-\\><C-n>v", opts)  -- Enter visual mode from terminal
 
 -- Close terminal window with C-q (same as regular windows)
 keymap("t", "<C-q>", "<C-\\><C-n>:quit<cr>", opts)
 
 -- Easy way to jump from Claude terminal back to code
 keymap("t", "<C-h>", "<C-\\><C-n><C-w>h", opts)  -- Jump left from terminal
+keymap("t", "<C-j>", "<C-\\><C-n><C-W><C-H>", opts)
+keymap("t", "<C-k>", "<C-\\><C-n><C-W><C-J>", opts)
+keymap("t", "<C-l>", "<C-\\><C-n><C-W><C-K>", opts)
+keymap("t", "<C-;>", "<C-\\><C-n><C-W><C-L>", opts)

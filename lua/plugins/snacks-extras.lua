@@ -146,6 +146,12 @@ return {
     { "<leader>m", function() Snacks.picker.buffers() end, desc = "Find Buffers" },
     { "<leader>fg", function() Snacks.picker.grep() end, desc = "Live Grep" },
     { "<leader>fw", function() Snacks.picker.grep_word() end, desc = "Grep Word Under Cursor" },
+    { "<leader>fd", function()
+      local dir = vim.fn.input("Directory: ", "", "dir")
+      if dir ~= "" then
+        Snacks.picker.grep({ dirs = { dir } })
+      end
+    end, desc = "Live Grep in Directory" },
     { "<leader>fh", function() Snacks.picker.help() end, desc = "Help Tags" },
 
     -- Buffer management
